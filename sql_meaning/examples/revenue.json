@@ -1,0 +1,14 @@
+{
+  "synthetic": true,
+  "name": "Revenue without join fanout / Chiffre d’affaires sans multiplication des jointures / Ingresos sin multiplicación por joins",
+  "intent": {"fr":"Chiffre d’affaires par client, y compris les clients sans commande. Une commande compte une seule fois, quel que soit son nombre de lignes.","en":"Revenue per customer, including customers without orders. Count each order once regardless of its line count.","es":"Ingresos por cliente, incluidos clientes sin pedidos. Contar cada pedido una vez, independientemente de sus líneas."},
+  "tables": {
+    "customers": {"columns":{"id":"INTEGER","name":"TEXT"},"primary_key":"id","rows":[{"id":1,"name":"Ada"},{"id":2,"name":"Basile"}]},
+    "orders": {"columns":{"id":"INTEGER","customer_id":"INTEGER","total_cents":"INTEGER"},"primary_key":"id","references":{"customer_id":["customers","id"]},"rows":[{"id":11,"customer_id":1,"total_cents":2000},{"id":12,"customer_id":2,"total_cents":3000}]},
+    "lines": {"columns":{"id":"INTEGER","order_id":"INTEGER","label":"TEXT"},"primary_key":"id","references":{"order_id":["orders","id"]},"rows":[{"id":21,"order_id":11,"label":"part-A"},{"id":22,"order_id":12,"label":"part-B"}]}
+  },
+  "mutate_tables": ["lines"],
+  "required_children": [["orders", "lines", "order_id"]],
+  "reference_sql": "SELECT c.id, COALESCE((SELECT SUM(o.total_cents) FROM orders o WHERE o.customer_id=c.id),0) AS revenue FROM customers c ORDER BY c.id",
+  "candidate_sql": "SELECT c.id, SUM(o.total_cents) AS revenue FROM customers c JOIN orders o ON o.customer_id=c.id JOIN lines l ON l.order_id=o.id GROUP BY c.id ORDER BY c.id"
+}

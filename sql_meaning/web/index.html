@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SQL Meaning Mutator</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SQL / MEANING MUTATOR</a>
+      <nav aria-label="Language">
+        <a href="?lang=fr">FR</a><a href="?lang=en">EN</a><a href="?lang=es">ES</a>
+      </nav>
+    </header>
+    <main>
+      <section class="intro">
+        <p class="eyebrow" data-i18n="eyebrow"></p>
+        <h1 data-i18n="title"></h1>
+        <p class="lede" data-i18n="lede"></p>
+      </section>
+      <section class="workspace">
+        <aside>
+          <span class="number">01 /</span>
+          <h2 data-i18n="intent"></h2>
+          <p id="intent" class="hint"></p>
+          <span class="badge" id="seed" data-i18n="seed"></span>
+          <p class="hint" data-i18n="trap"></p>
+          <button id="search" data-i18n="search"></button>
+          <p role="status" id="status"></p>
+          <button class="secondary" id="fix" data-i18n="fix"></button
+          ><button class="secondary" id="reset" data-i18n="reset"></button>
+          <details>
+            <summary data-i18n="reference"></summary>
+            <pre id="reference"></pre>
+          </details>
+        </aside>
+        <article>
+          <div class="section-head">
+            <div>
+              <span class="number">02 /</span>
+              <h2 data-i18n="candidate"></h2>
+            </div>
+            <span class="badge" id="verdict">SQLITE</span>
+          </div>
+          <textarea id="query" rows="5" spellcheck="false" aria-label="SQL"></textarea>
+          <div class="metrics">
+            <div><strong id="cases">—</strong><span data-i18n="cases"></span></div>
+            <div><strong id="rows">—</strong><span data-i18n="rows"></span></div>
+            <div><strong id="minimal">—</strong><span data-i18n="minimal"></span></div>
+          </div>
+          <h3 data-i18n="difference"></h3>
+          <div class="comparison">
+            <div>
+              <span data-i18n="reference"></span>
+              <pre id="expected">—</pre>
+            </div>
+            <div>
+              <span data-i18n="candidate"></span>
+              <pre id="actual">—</pre>
+            </div>
+          </div>
+          <h3 data-i18n="witness"></h3>
+          <div id="tables"></div>
+          <div class="actions">
+            <button id="download" class="secondary" data-i18n="download"></button
+            ><code id="digest"></code>
+          </div>
+        </article>
+      </section>
+      <footer>
+        <p data-i18n="limits"></p>
+        <a href="https://github.com/gbesse/sql-meaning-mutator">GitHub ↗</a>
+      </footer>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

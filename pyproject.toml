@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sql-meaning-mutator"
+version = "0.1.0a1"
+description = "Relational counterexamples for business-wrong SQL queries"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = []
+
+[project.scripts]
+sql-meaning = "sql_meaning.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["sql_meaning*"]
+
+[tool.setuptools.package-data]
+sql_meaning = ["web/*", "examples/*"]
