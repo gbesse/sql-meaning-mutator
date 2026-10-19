@@ -1,0 +1,5 @@
+include README*.md LICENSE package.json package-lock.json
+recursive-include sql_meaning/web *
+recursive-include sql_meaning/examples *.json
+recursive-include tests *.py *.mjs
+recursive-include .github *.yml
